@@ -1,0 +1,18 @@
+# Ignore large data
+*.V3.nc
+*.h5
+*.hdf
+*.csv
+
+# Temporary logs
+*.err
+*.out
+*.slurm
+
+# Ignore outputs
+outputs/
+results/
+
+# Ignore python cache
+.ipynb_checkpoints
+

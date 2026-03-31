@@ -49,6 +49,25 @@ using spectral reflectance from PACE OCI.
 
 ---
 
+## Software & Implementation Environment
+
+# Programing Language:
+- Python: 3.12.12 | packaged by conda-forge | (main, Oct 22, 2025, 23:25:55) [GCC 14.3.0]
+
+# Core Libraries (Operationally Required):
+- tensorflow: 2.18.0
+- tensorflow_probability: 0.25.0
+- tf.keras: 3.12.0
+- scikit-learn: 1.8.0
+- joblib: 1.5.3
+- numpy: 2.4.1
+- scipy: 1.17.0
+- pandas: 2.3.3
+- xarray: 2025.12.0
+- netCDF4: 1.7.4
+
+---
+
 ## Notes
 Large data files and model outputs are excluded using `.gitignore`.
 

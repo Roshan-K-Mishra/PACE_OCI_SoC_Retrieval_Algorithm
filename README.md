@@ -1,20 +1,19 @@
-# PACE OCI Smoke over Cloud (SoC) Retrieval Algorithm
+# PACE OCI Smoke over Cloud (SoC) Retrieval Algorithm. The algorithm is for smoke-over-cloud conditions.
 
 ## Overview
-This repository contains a machine-learning-based retrieval algorithm to estimate:
+This repository implements a machine-learning-based optimal estimation retrieval algorithm to jointly estimate:
 
 - Cloud Optical Thickness (COT)
 - Cloud Effective Radius (CER)
 - Above-Cloud Aerosol Optical Depth (AOD)
 
-using spectral reflectance from PACE OCI.
+from PACE OCI spectral reflectance observations. 
 
----
 
-## Methodology
-- Radiative Transfer Model (libRadtran) used to generate LUT
-- Neural Network trained to emulate reflectance
-- Optimal Estimation (Rodgers, 2000) used for retrieval
+The algorithm combines:
+- Radiative Transfer modeling (libRadtran LUT)
+- Neural Network forward model (emulator)
+- Bayesian Optimal Estimation (Rodgers, 2000)
 
 ---
 
@@ -43,18 +42,68 @@ using spectral reflectance from PACE OCI.
 
 ---
 
+
+## Methodology
+
+### 1. Forward Model (Neural Network)
+A trained neural network emulates reflectance:
+\[
+Reflectance = f(\text{CER}, \text{COT}, \text{AOD}, \text{SZA}, \text{VZA}, \text{RAA})
+\]
+
+- Input: 6 variables (state + geometry)
+- Output: Reflectance at 6 wavelengths
+
+---
+
+### 2. Retrieval Framework (Optimal Estimation)
+
+State vector:
+- CER (µm)
+- COT
+- AOD
+
+
+Cost function:
+- Measurement term (reflectance residual)
+- Prior constraint
+
+Optimization:
+- L-BFGS (TensorFlow Probability)
+- Multiple initial guesses for robustness
+
+---
+
+### 3. Uncertainty Quantification
+
+The algorithm computes:
+
+- Posterior covariance \( S_x \)
+- Averaging kernel \( A \)
+- Degrees of Freedom for Signal (DOFS)
+- Shannon Information Content (SIC)
+
+This follows Rodgers (2000):
+
+\[
+S_x = (K^T S_e^{-1} K + S_a^{-1})^{-1}
+\]
+
+---
+
+
 ## Files
 - `PACE_SoC_Retrieval.py` → main retrieval code
-- `Plotting_Retrievals.ipynb` → visualization
+- `Plotting_Retrievals.ipynb` → sample visualization
 
 ---
 
 ## Software & Implementation Environment
 
-# Programing Language:
+### Programming Language:
 - Python: 3.12.12 | packaged by conda-forge | (main, Oct 22, 2025, 23:25:55) [GCC 14.3.0]
 
-# Core Libraries (Operationally Required):
+### Core Libraries (Operationally Required):
 - tensorflow: 2.18.0
 - tensorflow_probability: 0.25.0
 - tf.keras: 3.12.0

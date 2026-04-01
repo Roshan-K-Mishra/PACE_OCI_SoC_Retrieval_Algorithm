@@ -47,9 +47,7 @@ The algorithm combines:
 
 ### 1. Forward Model (Neural Network)
 A trained neural network emulates reflectance:
-\[
-Reflectance = f(\text{CER}, \text{COT}, \text{AOD}, \text{SZA}, \text{VZA}, \text{RAA})
-\]
+Reflectance = f(CER, COT, AOD, SZA, VZA, RAA})
 
 - Input: 6 variables (state + geometry)
 - Output: Reflectance at 6 wavelengths

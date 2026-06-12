@@ -120,6 +120,28 @@ Large data files and model outputs are excluded using `.gitignore`.
 
 ---
 
+
+### Optimized retrieval workflow
+
+- `make_inputs.py`  
+  Prepares real PACE OCI inputs for the optimized retrieval.
+
+- `run_optimized.py`  
+  Main optimized retrieval script.
+
+- `run_aca_optimized.slurm`  
+  Slurm script for running the optimized retrieval.
+
+- `eval_inputs_real.npz`  
+  Prepared input file for the optimized retrieval.
+
+- `optimized_real_out.npz`  
+  Output from the optimized retrieval.
+
+- `Retrieval_plotting_optimized.ipynb`  
+  Plotting notebook for the optimized retrieval result.
+  
+
 ## Author
 Roshan Mishra  
 PhD Candidate, Atmospheric Physics, UMBC

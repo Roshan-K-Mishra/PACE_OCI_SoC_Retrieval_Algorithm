@@ -7,7 +7,7 @@
 # Temporary logs
 *.err
 *.out
-*.slurm
+PACE_SoC_Retrieval.slurm
 
 # Ignore outputs
 outputs/
@@ -16,3 +16,4 @@ results/
 # Ignore python cache
 .ipynb_checkpoints
 
+*.V3.nc
